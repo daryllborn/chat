@@ -28,13 +28,10 @@ io.on('connection', (socket) => {
 
   socket.on('createMessage', (message) => {
     console.log('New message created', message);
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
-
-//emit events
-  socket.emit('newMessage', {
-    from: 'Daryll Born',
-    text: 'Hello there',
-    createdAt: 'Timestamp'
-  });
-
 });
